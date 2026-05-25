@@ -408,8 +408,12 @@ async function init(){
   if(!session){location.href='login.html';return;}
   CU=session.user;
   // Force fresh read — no cache
-  const{data:p, error:pErr}=await sb.from('profiles').select('*').eq('id',CU.id).single();
-  if(pErr) console.error('Profile error:', pErr);
+  let p=null;
+  try{
+    const{data,error}=await sb.from('profiles').select('*').eq('id',CU.id).single();
+    if(error) console.error('Profile error:',error);
+    p=data;
+  }catch(e){console.error('Profile catch:',e);}
   CP=p;
   console.log('Profile loaded:', p?.full_name, 'role:', p?.role);
 
@@ -438,27 +442,38 @@ async function init(){
 }
 
 async function load(){
-  const{data}=await sb.from('service_jobs').select('*').order('created_at',{ascending:false});
-  jobs=data||[];
-
-  // Populate tech filter (Admin only)
-  const techSel=document.getElementById('filterTech');
-  if(techSel.children.length<=1){
-    const techs=[...new Set(jobs.map(j=>j.technician_name).filter(Boolean))];
-    techs.forEach(t=>{
-      const o=document.createElement('option');
-      o.value=t;o.textContent=t;
-      techSel.appendChild(o);
-    });
+  try{
+    const{data,error}=await sb.from('service_jobs').select('*').order('created_at',{ascending:false});
+    if(error){
+      console.error('Load jobs error:',error);
+      document.getElementById('list').innerHTML=`<div class="empty"><div class="empty-ic">⚠️</div><b>โหลดข้อมูลไม่ได้</b><p style="margin-top:6px;font-size:12px;color:#dc2626">${error.message}</p><button onclick="load()" style="margin-top:10px;padding:8px 20px;background:#1a3a6e;color:#fff;border:none;border-radius:8px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer">ลองใหม่</button></div>`;
+      return;
+    }
+    jobs=data||[];
+    // Populate tech filter (Admin only)
+    const techSel=document.getElementById('filterTech');
+    if(techSel.children.length<=1){
+      const techs=[...new Set(jobs.map(j=>j.technician_name).filter(Boolean))];
+      techs.forEach(t=>{
+        const o=document.createElement('option');
+        o.value=t;o.textContent=t;
+        techSel.appendChild(o);
+      });
+    }
+    updateStats();renderJobs();renderReport();
+  }catch(e){
+    console.error('Load error:',e);
+    document.getElementById('list').innerHTML=`<div class="empty"><div class="empty-ic">⚠️</div><b>เกิดข้อผิดพลาด</b><p style="margin-top:6px;font-size:12px;color:#dc2626">${e.message}</p><button onclick="load()" style="margin-top:10px;padding:8px 20px;background:#1a3a6e;color:#fff;border:none;border-radius:8px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer">ลองใหม่</button></div>`;
   }
-
-  updateStats();renderJobs();renderReport();
 }
 
 async function loadTeam(){
-  const{data}=await sb.from('profiles').select('*').order('full_name');
-  allProfiles=data||[];
-  renderTeam();
+  try{
+    const{data,error}=await sb.from('profiles').select('*').order('full_name');
+    if(error){console.error('loadTeam error:',error);return;}
+    allProfiles=data||[];
+    renderTeam();
+  }catch(e){console.error('loadTeam catch:',e);}
 }
 
 function updateStats(){
