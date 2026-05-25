@@ -1144,12 +1144,18 @@ document.addEventListener('DOMContentLoaded',function(){
   // 1. โหลดโลโก้ทุกที่พร้อม fallback
   const ld=document.getElementById('LD');
   const src=ld&&ld.textContent.trim()?'data:image/jpeg;base64,'+ld.textContent.trim():null;
-  document.querySelectorAll('.logo-target').forEach(img=>{
+  // โหลดโลโก้ทั้ง kimacLogo (form) และ logo-target (topbar)
+  const logoEls=[
+    document.getElementById('kimacLogo'),
+    document.getElementById('logoTop'),
+    ...document.querySelectorAll('.logo-target')
+  ].filter(Boolean);
+  logoEls.forEach(img=>{
     if(src){
       img.src=src;
       img.onerror=function(){
         this.style.display='none';
-        const ph=this.parentElement.querySelector('.logo-ph');
+        const ph=this.parentElement?.querySelector('.logo-ph');
         if(ph)ph.style.display='flex';
       };
     }else{
