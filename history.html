@@ -407,8 +407,11 @@ async function init(){
   const{data:{session}}=await sb.auth.getSession();
   if(!session){location.href='login.html';return;}
   CU=session.user;
-  const{data:p}=await sb.from('profiles').select('*').eq('id',CU.id).single();
+  // Force fresh read — no cache
+  const{data:p, error:pErr}=await sb.from('profiles').select('*').eq('id',CU.id).single();
+  if(pErr) console.error('Profile error:', pErr);
   CP=p;
+  console.log('Profile loaded:', p?.full_name, 'role:', p?.role);
 
   const nm=p?.full_name||CU.email;
   const pos=p?.position||'ช่างเทคนิค';
@@ -416,12 +419,18 @@ async function init(){
 
   document.getElementById('av').textContent=nm[0].toUpperCase();
   document.getElementById('uname').textContent=nm;
-  document.getElementById('urole').textContent=pos;
+  // แสดงตำแหน่ง + role
+  document.getElementById('urole').textContent=pos+(role==='admin'?' 👑':'');
 
   // Admin: แสดง filter bar และปุ่มจัดการทีม
   if(role==='admin'){
     document.getElementById('filterBar').style.display='flex';
     document.getElementById('adminNote').style.display='block';
+    // Admin badge บน topbar
+    const roleTag=document.createElement('span');
+    roleTag.textContent='Admin';
+    roleTag.style.cssText='background:#f9c900;color:#1a3a6e;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:800;margin-left:4px';
+    document.getElementById('uname').appendChild(roleTag);
   }
 
   await load();
