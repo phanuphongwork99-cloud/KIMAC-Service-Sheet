@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="0; url=login.html">
-<script>window.location.href='login.html';</script>
+<title>KIMAC</title>
+<script>
+  // GitHub Pages redirect to login
+  var base = window.location.pathname.replace(/\/[^/]*$/, '');
+  window.location.replace(base + '/login.html');
+</script>
 </head>
-<body></body>
+<body>
+  <p>กำลังโหลด... <a href="login.html">คลิกที่นี่</a></p>
+</body>
 </html>
