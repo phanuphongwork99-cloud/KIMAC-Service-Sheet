@@ -14,32 +14,27 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{height:100%}
 body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
-  min-height:100vh;padding-bottom:calc(66px + env(safe-area-inset-bottom));}
+  min-height:100vh;padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 
-/* TOPBAR */
-.topbar{
-  position:sticky;top:0;z-index:100;
+.topbar{position:sticky;top:0;z-index:100;
   background:linear-gradient(135deg,#0f2347,#1a3a6e);
-  padding:12px 14px;
-  padding-top:calc(12px + env(safe-area-inset-top));
+  padding:12px 14px;padding-top:calc(12px + env(safe-area-inset-top));
   display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 2px 16px rgba(0,0,0,.25);
-}
+  box-shadow:0 2px 16px rgba(0,0,0,.25)}
 .tb-l{display:flex;align-items:center;gap:10px}
-.tb-l img{width:34px;height:24px;object-fit:contain}
+.tb-l img{width:34px;height:24px;object-fit:contain;border-radius:3px}
 .tb-title{color:#fff;font-size:17px;font-weight:800;letter-spacing:1.5px}
 .tb-r{display:flex;align-items:center;gap:8px}
 .avatar{width:34px;height:34px;border-radius:50%;background:#f9c900;
   color:#1a3a6e;font-weight:800;font-size:14px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.uinfo{line-height:1.3;color:#fff}
-.uname{font-size:12px;font-weight:700;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer}
+.uinfo{line-height:1.3;color:#fff;cursor:pointer}
+.uname{font-size:12px;font-weight:700;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .urole{font-size:10px;opacity:.7}
 .btn-out{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
   color:#fff;padding:5px 10px;border-radius:8px;font-family:'Sarabun',sans-serif;
   font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
 
-/* STATS */
 .stats{background:#1a3a6e;display:flex;overflow-x:auto;scrollbar-width:none}
 .stats::-webkit-scrollbar{display:none}
 .stat{flex:1;min-width:80px;padding:10px 8px;text-align:center;
@@ -48,11 +43,18 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
 .stat-n{font-size:20px;font-weight:800;color:#f9c900}
 .stat-l{font-size:10px;color:rgba(255,255,255,.7);margin-top:1px}
 
-/* PAGES */
+/* FILTER BAR */
+.filter-bar{background:#1a3a6e;padding:8px 12px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.fb-label{color:rgba(255,255,255,.7);font-size:11px;white-space:nowrap}
+.fb-select{padding:5px 8px;border:1px solid rgba(255,255,255,.3);border-radius:8px;
+  font-family:'Sarabun',sans-serif;font-size:12px;color:#fff;
+  background:rgba(255,255,255,.1);outline:none;cursor:pointer}
+.fb-select option{color:#1a1a2e;background:#fff}
+
 .page{display:none;padding:12px;max-width:800px;margin:0 auto}
 .page.active{display:block}
 
-/* TOOLBAR */
 .bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .srch{flex:1;min-width:150px;position:relative}
 .srch input{width:100%;padding:10px 12px 10px 34px;border:2px solid #e2e8f8;
@@ -60,17 +62,13 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   background:#fff;outline:none;-webkit-appearance:none;color:#1a1a2e}
 .srch input:focus{border-color:#1a3a6e}
 .srch::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px}
-.fsel{padding:10px 8px;border:2px solid #e2e8f8;border-radius:10px;
-  font-family:'Sarabun',sans-serif;font-size:12px;color:#1a1a2e;
-  background:#fff;outline:none;-webkit-appearance:none}
 .btn-new{padding:10px 16px;background:linear-gradient(135deg,#1a3a6e,#2a5298);
   color:#fff;border:none;border-radius:10px;font-family:'Sarabun',sans-serif;
   font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
 
 /* JOB CARDS */
 .card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff;
-  cursor:pointer;transition:all .15s}
+  box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff;cursor:pointer}
 .card:active{transform:scale(.99);opacity:.9}
 .ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
 .cjno{font-size:14px;font-weight:800;color:#1a3a6e}
@@ -90,17 +88,17 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   font-size:11px;font-weight:600;cursor:pointer}
 .bedit{background:#eff6ff;color:#1e40af}
 .bdel{background:#fff0f0;color:#dc2626}
+
 .empty{text-align:center;padding:50px 20px;color:#888}
 .empty-ic{font-size:44px;margin-bottom:10px}
 .ld{text-align:center;padding:40px;color:#888}
 .dots{display:inline-flex;gap:5px}
-.dots span{width:7px;height:7px;border-radius:50%;background:#1a3a6e;
-  animation:bop .6s infinite alternate}
+.dots span{width:7px;height:7px;border-radius:50%;background:#1a3a6e;animation:bop .6s infinite alternate}
 .dots span:nth-child(2){animation-delay:.2s}
 .dots span:nth-child(3){animation-delay:.4s}
 @keyframes bop{to{transform:translateY(-7px);opacity:.3}}
 
-/* REPORT PAGE */
+/* REPORT */
 .rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .rpt-card{background:#fff;border-radius:14px;padding:16px;text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff}
@@ -110,16 +108,33 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff}
 .rpt-sec h3{font-size:14px;font-weight:800;color:#1a3a6e;margin-bottom:12px}
 .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.bar-label{font-size:12px;color:#555;width:60px;flex-shrink:0}
+.bar-label{font-size:12px;color:#555;width:70px;flex-shrink:0;font-weight:600}
 .bar-track{flex:1;height:8px;background:#f0f4ff;border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;background:linear-gradient(90deg,#1a3a6e,#2a5298);border-radius:4px;transition:width .5s}
-.bar-val{font-size:11px;font-weight:700;color:#1a3a6e;width:40px;text-align:right}
-.month-list{}
+.bar-val{font-size:11px;font-weight:700;color:#1a3a6e;width:45px;text-align:right}
 .month-row{display:flex;justify-content:space-between;align-items:center;
   padding:8px 0;border-bottom:1px solid #f0f4ff;font-size:13px}
 .month-row:last-child{border-bottom:none}
 
-/* SETTINGS PAGE */
+/* TEAM PAGE */
+.team-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff;
+  display:flex;align-items:center;gap:12px}
+.team-av{width:46px;height:46px;border-radius:50%;background:#1a3a6e;
+  color:#f9c900;font-size:18px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.team-info{flex:1}
+.team-name{font-size:15px;font-weight:800;color:#1a3a6e}
+.team-pos{font-size:12px;color:#888;margin-top:2px}
+.team-email{font-size:11px;color:#aaa;margin-top:1px}
+.team-stats{text-align:right}
+.team-cnt{font-size:18px;font-weight:800;color:#1a3a6e}
+.team-lbl{font-size:10px;color:#888}
+.role-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;margin-top:4px}
+.role-admin{background:#fef3c7;color:#92400e}
+.role-tech{background:#dbeafe;color:#1e40af}
+
+/* SETTINGS */
 .set-sec{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:12px;
   box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff}
 .set-hd{background:#1a3a6e;color:#fff;padding:10px 16px;font-size:13px;font-weight:700}
@@ -127,9 +142,9 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   padding:14px 16px;border-bottom:1px solid #f0f4ff;cursor:pointer}
 .set-row:last-child{border-bottom:none}
 .set-row:active{background:#f8faff}
-.set-lbl{font-size:14px;color:#1a1a2e}
+.set-lbl{font-size:14px;color:#1a1a2e;font-weight:600}
 .set-sub{font-size:11px;color:#888;margin-top:2px}
-.set-arr{color:#888;font-size:16px}
+.set-arr{color:#ccc;font-size:18px}
 .profile-header{display:flex;align-items:center;gap:14px;padding:16px;
   background:#fff;border-radius:14px;margin-bottom:12px;
   box-shadow:0 2px 8px rgba(0,0,0,.05);border:1.5px solid #eef2ff}
@@ -158,36 +173,41 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   align-items:flex-end;justify-content:center}
 .mo.open{display:flex}
 .mb{background:#fff;border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:480px;
-  padding-bottom:calc(20px + env(safe-area-inset-bottom))}
-.mt{font-size:15px;font-weight:800;color:#1a3a6e;margin-bottom:12px}
+  padding-bottom:calc(20px + env(safe-area-inset-bottom));max-height:85vh;overflow-y:auto}
+.mt{font-size:15px;font-weight:800;color:#1a3a6e;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between}
 .mc{display:flex;gap:8px;margin-top:14px}
 .mok{flex:1;padding:12px;background:#dc2626;color:#fff;border:none;border-radius:10px;
   font-family:'Sarabun',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
 .mno{flex:1;padding:12px;background:#f0f4ff;color:#1a3a6e;border:none;border-radius:10px;
   font-family:'Sarabun',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
-
-/* EDIT PROFILE MODAL */
+.mclose{background:none;border:none;font-size:20px;cursor:pointer;color:#888;padding:0}
 .form-field{margin-bottom:14px}
-.form-field label{display:block;font-size:11px;font-weight:700;color:#1a3a6e;margin-bottom:5px}
-.form-field input{width:100%;padding:11px 13px;border:2px solid #e2e8f8;border-radius:10px;
+.form-field label{display:block;font-size:11px;font-weight:700;color:#1a3a6e;margin-bottom:5px;letter-spacing:.5px}
+.form-field input,.form-field select{width:100%;padding:11px 13px;border:2px solid #e2e8f8;border-radius:10px;
   font-family:'Sarabun',sans-serif;font-size:14px;color:#1a1a2e;
   background:#f8faff;outline:none;-webkit-appearance:none}
-.form-field input:focus{border-color:#1a3a6e;background:#fff}
-.btn-save-prof{width:100%;padding:13px;background:linear-gradient(135deg,#1a3a6e,#2a5298);
+.form-field input:focus,.form-field select:focus{border-color:#1a3a6e;background:#fff}
+.btn-save-pf{width:100%;padding:13px;background:linear-gradient(135deg,#1a3a6e,#2a5298);
   color:#fff;border:none;border-radius:10px;font-family:'Sarabun',sans-serif;
   font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+.toast-msg{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  padding:10px 20px;border-radius:10px;font-family:'Sarabun',sans-serif;font-size:13px;
+  font-weight:700;z-index:9999;opacity:0;transition:opacity .3s;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);pointer-events:none;
+  max-width:90vw;text-align:center;white-space:nowrap}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="tb-l">
-    <img id="logo" src="" alt="">
+    <img id="logo" src="" alt="" onerror="this.style.display='none'">
     <span class="tb-title">KIMAC</span>
   </div>
   <div class="tb-r">
-    <div class="avatar" id="av">?</div>
-    <div class="uinfo">
+    <div class="avatar" id="av" onclick="switchPage('settings')">?</div>
+    <div class="uinfo" onclick="switchPage('settings')">
       <div class="uname" id="uname">กำลังโหลด...</div>
       <div class="urole" id="urole"></div>
     </div>
@@ -202,11 +222,21 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   <div class="stat"><div class="stat-n" id="sDo">-</div><div class="stat-l">เสร็จ</div></div>
 </div>
 
+<!-- FILTER BAR — กรองตามช่าง (Admin เท่านั้น) -->
+<div class="filter-bar" id="filterBar" style="display:none">
+  <span class="fb-label">กรองช่าง:</span>
+  <select class="fb-select" id="filterTech" onchange="renderJobs()">
+    <option value="">ทุกคน</option>
+  </select>
+</div>
+
 <!-- PAGE: ใบงาน -->
 <div id="pg-jobs" class="page active">
   <div class="bar">
     <div class="srch"><input id="sq" placeholder="ค้นหา บริษัท / เลขใบงาน..." oninput="renderJobs()"></div>
-    <select class="fsel" id="fs" onchange="renderJobs()">
+    <select style="padding:10px 8px;border:2px solid #e2e8f8;border-radius:10px;
+      font-family:'Sarabun',sans-serif;font-size:12px;color:#1a1a2e;background:#fff;outline:none"
+      id="fs" onchange="renderJobs()">
       <option value="">ทุกสถานะ</option>
       <option value="draft">ร่าง</option>
       <option value="completed">เสร็จสิ้น</option>
@@ -225,14 +255,17 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
     <div class="rpt-card"><div class="rpt-num" id="rRev" style="font-size:18px">-</div><div class="rpt-label">รายได้รวม (฿)</div></div>
     <div class="rpt-card"><div class="rpt-num" id="rAvg" style="font-size:18px">-</div><div class="rpt-label">เฉลี่ยต่อใบงาน</div></div>
   </div>
-  <div class="rpt-sec">
-    <h3>📊 สถานะใบงาน</h3>
-    <div id="statusChart"></div>
+  <div class="rpt-sec"><h3>📊 สถานะใบงาน</h3><div id="statusChart"></div></div>
+  <div class="rpt-sec"><h3>📅 6 เดือนล่าสุด</h3><div id="monthChart"></div></div>
+</div>
+
+<!-- PAGE: ทีมงาน -->
+<div id="pg-team" class="page">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a3a6e">👥 ทีมงานทั้งหมด</div>
+    <div id="adminNote" style="font-size:11px;color:#888;display:none">Admin: จัดการได้ทั้งหมด</div>
   </div>
-  <div class="rpt-sec">
-    <h3>📅 ใบงาน 6 เดือนล่าสุด</h3>
-    <div id="monthChart"></div>
-  </div>
+  <div id="teamList"><div class="ld"><div class="dots"><span></span><span></span><span></span></div><br>กำลังโหลด...</div></div>
 </div>
 
 <!-- PAGE: ตั้งค่า -->
@@ -242,40 +275,30 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
     <div>
       <div class="profile-name" id="profName">-</div>
       <div class="profile-email" id="profEmail">-</div>
-      <span class="profile-role" id="profRole">ช่างเทคนิค</span>
+      <span class="profile-role" id="profRole">-</span>
     </div>
   </div>
   <div class="set-sec">
-    <div class="set-hd">👤 บัญชีผู้ใช้</div>
+    <div class="set-hd">👤 ข้อมูลส่วนตัว</div>
     <div class="set-row" onclick="openEditProfile()">
-      <div><div class="set-lbl">แก้ไขโปรไฟล์</div><div class="set-sub">ชื่อ, เบอร์โทร</div></div>
+      <div><div class="set-lbl">แก้ไขโปรไฟล์</div><div class="set-sub">ชื่อ, ตำแหน่ง, เบอร์โทร</div></div>
       <span class="set-arr">›</span>
     </div>
     <div class="set-row" onclick="changePassword()">
-      <div><div class="set-lbl">เปลี่ยนรหัสผ่าน</div><div class="set-sub">ส่ง email รีเซ็ตรหัสผ่าน</div></div>
+      <div><div class="set-lbl">เปลี่ยนรหัสผ่าน</div><div class="set-sub">ส่ง Email รีเซ็ต</div></div>
       <span class="set-arr">›</span>
     </div>
   </div>
   <div class="set-sec">
-    <div class="set-hd">📋 จัดการข้อมูล</div>
+    <div class="set-hd">📋 ข้อมูล</div>
     <div class="set-row" onclick="exportAllJobs()">
-      <div><div class="set-lbl">Export ใบงานทั้งหมด</div><div class="set-sub">บันทึกเป็นไฟล์ CSV</div></div>
-      <span class="set-arr">›</span>
-    </div>
-    <div class="set-row" onclick="clearLocalData()">
-      <div><div class="set-lbl">ล้างข้อมูล Cache</div><div class="set-sub">ล้างข้อมูลชั่วคราวในเครื่อง</div></div>
+      <div><div class="set-lbl">Export ใบงาน CSV</div><div class="set-sub">บันทึกข้อมูลทั้งหมด</div></div>
       <span class="set-arr">›</span>
     </div>
   </div>
   <div class="set-sec">
-    <div class="set-hd">ℹ️ เกี่ยวกับแอป</div>
-    <div class="set-row">
-      <div><div class="set-lbl">เวอร์ชัน</div><div class="set-sub">KIMAC Service Sheet v3.0</div></div>
-      <span style="font-size:11px;color:#888">Cloud</span>
-    </div>
-    <div class="set-row">
-      <div><div class="set-lbl">บริษัท คีแมค จำกัด</div><div class="set-sub">www.kimacthailand.com</div></div>
-    </div>
+    <div class="set-hd">ℹ️ เกี่ยวกับ</div>
+    <div class="set-row"><div><div class="set-lbl">เวอร์ชัน</div><div class="set-sub">KIMAC Service Sheet v3.0 Cloud</div></div></div>
   </div>
   <div style="padding:0 0 16px">
     <button onclick="logout()" style="width:100%;padding:14px;background:#fff0f0;color:#dc2626;
@@ -289,14 +312,15 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
   <button class="bni on" id="nav-jobs" onclick="switchPage('jobs')"><span class="bni-ic">📋</span>ใบงาน</button>
   <button class="bni" id="nav-new" onclick="newJob()"><span class="bni-ic">➕</span>สร้างใหม่</button>
   <button class="bni" id="nav-report" onclick="switchPage('report')"><span class="bni-ic">📊</span>รายงาน</button>
+  <button class="bni" id="nav-team" onclick="switchPage('team')"><span class="bni-ic">👥</span>ทีมงาน</button>
   <button class="bni" id="nav-settings" onclick="switchPage('settings')"><span class="bni-ic">⚙️</span>ตั้งค่า</button>
 </div>
 
 <!-- DELETE MODAL -->
 <div class="mo" id="delMo">
   <div class="mb">
-    <div class="mt">🗑️ ยืนยันการลบ</div>
-    <p style="font-size:13px;color:#555">ลบใบงาน <b id="delNo" style="color:#dc2626"></b> หรือไม่?<br>ไม่สามารถย้อนกลับได้</p>
+    <div class="mt">🗑️ ยืนยันการลบ <button class="mclose" onclick="closeDel()">✕</button></div>
+    <p style="font-size:13px;color:#555">ลบใบงาน <b id="delNo" style="color:#dc2626"></b> หรือไม่?</p>
     <div class="mc">
       <button class="mno" onclick="closeDel()">ยกเลิก</button>
       <button class="mok" id="mok" onclick="doDel()">ลบเลย</button>
@@ -305,14 +329,52 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
 </div>
 
 <!-- EDIT PROFILE MODAL -->
-<div class="mo" id="editProfileMo">
+<div class="mo" id="editProfMo">
   <div class="mb">
-    <div class="mt">✏️ แก้ไขโปรไฟล์
-      <button onclick="closeEditProfile()" style="float:right;background:none;border:none;font-size:20px;cursor:pointer;color:#888">✕</button>
-    </div>
+    <div class="mt">✏️ แก้ไขโปรไฟล์ <button class="mclose" onclick="document.getElementById('editProfMo').classList.remove('open')">✕</button></div>
     <div class="form-field"><label>ชื่อ-นามสกุล</label><input type="text" id="ep-name" placeholder="ชื่อช่างผู้ให้บริการ"></div>
+    <div class="form-field">
+      <label>ตำแหน่ง</label>
+      <select id="ep-pos">
+        <option value="ช่างเทคนิค">ช่างเทคนิค</option>
+        <option value="หัวหน้าช่าง">หัวหน้าช่าง</option>
+        <option value="วิศวกร">วิศวกร</option>
+        <option value="ผู้จัดการ">ผู้จัดการ</option>
+        <option value="ฝ่ายขาย">ฝ่ายขาย</option>
+        <option value="ธุรการ">ธุรการ</option>
+        <option value="อื่นๆ">อื่นๆ</option>
+      </select>
+    </div>
+    <div class="form-field"><label>ตำแหน่งกำหนดเอง (ถ้าเลือก อื่นๆ)</label><input type="text" id="ep-pos-custom" placeholder="ระบุตำแหน่ง..."></div>
     <div class="form-field"><label>เบอร์โทรศัพท์</label><input type="tel" id="ep-phone" placeholder="08x-xxx-xxxx"></div>
-    <button class="btn-save-prof" onclick="saveProfile()">💾 บันทึก</button>
+    <button class="btn-save-pf" onclick="saveProfile()">💾 บันทึก</button>
+  </div>
+</div>
+
+<!-- SET ROLE MODAL (Admin only) -->
+<div class="mo" id="setRoleMo">
+  <div class="mb">
+    <div class="mt">🔧 จัดการสิทธิ์ <button class="mclose" onclick="document.getElementById('setRoleMo').classList.remove('open')">✕</button></div>
+    <div id="setRoleInfo" style="font-size:13px;color:#555;margin-bottom:14px"></div>
+    <div class="form-field">
+      <label>บทบาท</label>
+      <select id="sr-role">
+        <option value="technician">🔧 ช่างเทคนิค</option>
+        <option value="admin">👑 Admin</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>ตำแหน่ง</label>
+      <select id="sr-pos">
+        <option value="ช่างเทคนิค">ช่างเทคนิค</option>
+        <option value="หัวหน้าช่าง">หัวหน้าช่าง</option>
+        <option value="วิศวกร">วิศวกร</option>
+        <option value="ผู้จัดการ">ผู้จัดการ</option>
+        <option value="ฝ่ายขาย">ฝ่ายขาย</option>
+        <option value="ธุรการ">ธุรการ</option>
+      </select>
+    </div>
+    <button class="btn-save-pf" onclick="saveRole()" style="background:linear-gradient(135deg,#065f46,#16a34a)">💾 บันทึกสิทธิ์</button>
   </div>
 </div>
 
@@ -320,18 +382,13 @@ body{font-family:'Sarabun',sans-serif;background:#f0f4ff;color:#1a1a2e;
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const sb=supabase.createClient('https://mnzzvyugefbpphklkvwr.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uenp2eXVnZWZicHBoa2xrdndyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MDY0ODMsImV4cCI6MjA5NTE4MjQ4M30.6qWvu2BI6UAqE4fmbBTxHtcGUEgcMS1Bj3nVDBN0A10');
-document.getElementById('logo').src='data:image/jpeg;base64,'+document.getElementById('LD').textContent.trim();
-let jobs=[],delId=null,CU=null,CP=null;
+let jobs=[],allProfiles=[],delId=null,roleTargetId=null;
+let CU=null,CP=null;
 
+// Toast
 function toast(m,t){
-  let el=document.getElementById('_toast');
-  if(!el){el=document.createElement('div');el.id='_toast';
-    Object.assign(el.style,{position:'fixed',bottom:'80px',left:'50%',transform:'translateX(-50%)',
-      padding:'10px 20px',borderRadius:'10px',fontFamily:'Sarabun,sans-serif',fontSize:'13px',
-      fontWeight:'700',zIndex:'9999',opacity:'0',transition:'opacity .3s',
-      whiteSpace:'nowrap',boxShadow:'0 4px 20px rgba(0,0,0,.3)',pointerEvents:'none',maxWidth:'90vw'});
-    document.body.appendChild(el);
-  }
+  let el=document.querySelector('.toast-msg');
+  if(!el){el=document.createElement('div');el.className='toast-msg';document.body.appendChild(el);}
   el.textContent=m;
   el.style.background=t==='ok'?'#16a34a':t==='err'?'#dc2626':'#1a3a6e';
   el.style.color='#fff';el.style.opacity='1';
@@ -339,56 +396,100 @@ function toast(m,t){
 }
 
 async function init(){
+  // Load logo
+  const ld=document.getElementById('LD');
+  if(ld&&ld.textContent.trim()){
+    const src='data:image/jpeg;base64,'+ld.textContent.trim();
+    const logoEl=document.getElementById('logo');
+    if(logoEl)logoEl.src=src;
+  }
+
   const{data:{session}}=await sb.auth.getSession();
   if(!session){location.href='login.html';return;}
   CU=session.user;
   const{data:p}=await sb.from('profiles').select('*').eq('id',CU.id).single();
   CP=p;
+
   const nm=p?.full_name||CU.email;
+  const pos=p?.position||'ช่างเทคนิค';
+  const role=p?.role||'technician';
+
   document.getElementById('av').textContent=nm[0].toUpperCase();
   document.getElementById('uname').textContent=nm;
-  document.getElementById('urole').textContent=p?.role==='admin'?'👑 Admin':'🔧 ช่างเทคนิค';
-  // settings profile
-  document.getElementById('profAv').textContent=nm[0].toUpperCase();
-  document.getElementById('profName').textContent=nm;
-  document.getElementById('profEmail').textContent=CU.email;
-  document.getElementById('profRole').textContent=p?.role==='admin'?'👑 Admin':'🔧 ช่างเทคนิค';
+  document.getElementById('urole').textContent=pos;
+
+  // Admin: แสดง filter bar และปุ่มจัดการทีม
+  if(role==='admin'){
+    document.getElementById('filterBar').style.display='flex';
+    document.getElementById('adminNote').style.display='block';
+  }
+
   await load();
+  await loadTeam();
 }
 
 async function load(){
   const{data}=await sb.from('service_jobs').select('*').order('created_at',{ascending:false});
   jobs=data||[];
-  updateStats();
-  renderJobs();
-  renderReport();
+
+  // Populate tech filter (Admin only)
+  const techSel=document.getElementById('filterTech');
+  if(techSel.children.length<=1){
+    const techs=[...new Set(jobs.map(j=>j.technician_name).filter(Boolean))];
+    techs.forEach(t=>{
+      const o=document.createElement('option');
+      o.value=t;o.textContent=t;
+      techSel.appendChild(o);
+    });
+  }
+
+  updateStats();renderJobs();renderReport();
+}
+
+async function loadTeam(){
+  const{data}=await sb.from('profiles').select('*').order('full_name');
+  allProfiles=data||[];
+  renderTeam();
 }
 
 function updateStats(){
   const now=new Date();
-  const mon=jobs.filter(j=>{const d=new Date(j.created_at);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
-  document.getElementById('sAll').textContent=jobs.length;
+  const myJobs=CP?.role==='admin'?jobs:jobs.filter(j=>j.technician_id===CU.id);
+  const mon=myJobs.filter(j=>{const d=new Date(j.created_at);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
+  document.getElementById('sAll').textContent=myJobs.length;
   document.getElementById('sMon').textContent=mon.length;
-  document.getElementById('sDr').textContent=jobs.filter(j=>j.status==='draft').length;
-  document.getElementById('sDo').textContent=jobs.filter(j=>j.status==='completed'||j.status==='approved').length;
+  document.getElementById('sDr').textContent=myJobs.filter(j=>j.status==='draft').length;
+  document.getElementById('sDo').textContent=myJobs.filter(j=>j.status==='completed'||j.status==='approved').length;
 }
 
 function renderJobs(){
-  const q=document.getElementById('sq').value.toLowerCase();
+  const q=(document.getElementById('sq').value||'').toLowerCase();
   const st=document.getElementById('fs').value;
-  let jj=jobs;
+  const tech=document.getElementById('filterTech').value;
+  const isAdmin=CP?.role==='admin';
+
+  // ช่างธรรมดาเห็นแค่งานตัวเอง, Admin เห็นทั้งหมด
+  let jj=isAdmin?jobs:jobs.filter(j=>j.technician_id===CU.id);
+
   if(q) jj=jj.filter(j=>(j.job_no||'').toLowerCase().includes(q)||(j.company||'').toLowerCase().includes(q)||(j.technician_name||'').toLowerCase().includes(q));
   if(st) jj=jj.filter(j=>j.status===st);
+  if(tech&&isAdmin) jj=jj.filter(j=>j.technician_name===tech);
+
   const el=document.getElementById('list');
-  if(!jj.length){el.innerHTML='<div class="empty"><div class="empty-ic">📭</div><b>ไม่พบใบงาน</b><p style="margin-top:6px;font-size:13px">กด "+ ใหม่" เพื่อสร้างใบงาน</p></div>';return;}
+  if(!jj.length){
+    el.innerHTML='<div class="empty"><div class="empty-ic">📭</div><b>ไม่พบใบงาน</b><p style="margin-top:6px;font-size:13px">กด "+ ใหม่" เพื่อสร้างใบงาน</p></div>';
+    return;
+  }
   const slm={draft:'draft',completed:'completed',approved:'approved'};
   const nm={draft:'ร่าง',completed:'เสร็จสิ้น',approved:'อนุมัติแล้ว'};
   el.innerHTML=jj.map(j=>{
     const d=new Date(j.service_date||j.created_at).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
     const tot=j.total?parseFloat(j.total).toLocaleString('th-TH',{minimumFractionDigits:2}):'-';
+    const canEdit=CP?.role==='admin'||j.technician_id===CU.id;
     return `<div class="card" onclick="editJob(${j.id})">
       <div class="ch">
-        <div><div class="cjno">📄 ${j.job_no||'ไม่มีเลขที่'}</div><div class="cdate">📅 ${d} · 🔧 ${j.technician_name||'-'}</div></div>
+        <div><div class="cjno">📄 ${j.job_no||'ไม่มีเลขที่'}</div>
+        <div class="cdate">📅 ${d} · 🔧 ${j.technician_name||'-'}</div></div>
         <span class="badge ${slm[j.status]||'draft'}">${nm[j.status]||'ร่าง'}</span>
       </div>
       <div class="cb">
@@ -400,38 +501,67 @@ function renderJobs(){
       <div class="cf">
         <div class="ctot">💰 ฿${tot}</div>
         <div class="cacts" onclick="event.stopPropagation()">
-          <button class="bsm bedit" onclick="editJob(${j.id})">✏️ แก้ไข</button>
-          <button class="bsm bdel" onclick="askDel(${j.id},'${j.job_no}')">🗑️</button>
+          ${canEdit?`<button class="bsm bedit" onclick="editJob(${j.id})">✏️ แก้ไข</button>`:'<span style="font-size:10px;color:#aaa">👁 ดูอย่างเดียว</span>'}
+          ${CP?.role==='admin'?`<button class="bsm bdel" onclick="askDel(${j.id},'${j.job_no}')">🗑️</button>`:''}
         </div>
       </div></div>`;
   }).join('');
 }
 
+function renderTeam(){
+  const el=document.getElementById('teamList');
+  if(!allProfiles.length){el.innerHTML='<div class="empty"><div class="empty-ic">👥</div><b>ยังไม่มีสมาชิก</b></div>';return;}
+  const isAdmin=CP?.role==='admin';
+  el.innerHTML=allProfiles.map(p=>{
+    const nm=p.full_name||p.id;
+    const pos=p.position||'ช่างเทคนิค';
+    const role=p.role||'technician';
+    const cnt=jobs.filter(j=>j.technician_id===p.id).length;
+    const isMe=p.id===CU.id;
+    return `<div class="team-card">
+      <div class="team-av">${nm[0]?.toUpperCase()||'?'}</div>
+      <div class="team-info">
+        <div class="team-name">${nm} ${isMe?'<span style="font-size:10px;background:#f0fdf4;color:#16a34a;padding:1px 6px;border-radius:10px">คุณ</span>':''}</div>
+        <div class="team-pos">${pos}</div>
+        <div class="team-email">${p.phone||''}</div>
+        <span class="role-badge ${role==='admin'?'role-admin':'role-tech'}">${role==='admin'?'👑 Admin':'🔧 ช่าง'}</span>
+      </div>
+      <div class="team-stats">
+        <div class="team-cnt">${cnt}</div>
+        <div class="team-lbl">ใบงาน</div>
+        ${isAdmin&&!isMe?`<button onclick="openSetRole('${p.id}','${nm}','${role}','${pos}')"
+          style="margin-top:6px;padding:4px 10px;background:#f0f4ff;color:#1a3a6e;
+          border:1px solid #c7d7ff;border-radius:6px;font-family:'Sarabun',sans-serif;
+          font-size:11px;font-weight:600;cursor:pointer">⚙️ จัดการ</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function renderReport(){
   const now=new Date();
-  const mon=jobs.filter(j=>{const d=new Date(j.created_at);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
-  const totalRev=jobs.reduce((s,j)=>s+(parseFloat(j.total)||0),0);
-  const avg=jobs.length?totalRev/jobs.length:0;
-  document.getElementById('rTot').textContent=jobs.length;
+  const myJobs=CP?.role==='admin'?jobs:jobs.filter(j=>j.technician_id===CU.id);
+  const mon=myJobs.filter(j=>{const d=new Date(j.created_at);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
+  const totalRev=myJobs.reduce((s,j)=>s+(parseFloat(j.total)||0),0);
+  const avg=myJobs.length?totalRev/myJobs.length:0;
+  document.getElementById('rTot').textContent=myJobs.length;
   document.getElementById('rMon').textContent=mon.length;
   document.getElementById('rRev').textContent=totalRev.toLocaleString('th-TH',{maximumFractionDigits:0});
   document.getElementById('rAvg').textContent=avg.toLocaleString('th-TH',{maximumFractionDigits:0});
-  // Status chart
   const statuses={draft:'ร่าง',completed:'เสร็จสิ้น',approved:'อนุมัติ'};
   const sc=document.getElementById('statusChart');
   sc.innerHTML=Object.entries(statuses).map(([k,l])=>{
-    const cnt=jobs.filter(j=>j.status===k).length;
-    const pct=jobs.length?Math.round(cnt/jobs.length*100):0;
+    const cnt=myJobs.filter(j=>j.status===k).length;
+    const pct=myJobs.length?Math.round(cnt/myJobs.length*100):0;
     return `<div class="bar-row"><div class="bar-label">${l}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
       <div class="bar-val">${cnt} ใบ</div></div>`;
   }).join('');
-  // Monthly chart (6 months)
   const mc=document.getElementById('monthChart');
   const months=[];
   for(let i=5;i>=0;i--){
     const d=new Date(now.getFullYear(),now.getMonth()-i,1);
-    const cnt=jobs.filter(j=>{const jd=new Date(j.created_at);return jd.getMonth()===d.getMonth()&&jd.getFullYear()===d.getFullYear();}).length;
+    const cnt=myJobs.filter(j=>{const jd=new Date(j.created_at);return jd.getMonth()===d.getMonth()&&jd.getFullYear()===d.getFullYear();}).length;
     months.push({label:d.toLocaleDateString('th-TH',{month:'short',year:'2-digit'}),cnt});
   }
   const maxCnt=Math.max(...months.map(m=>m.cnt),1);
@@ -449,89 +579,102 @@ function switchPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.bni').forEach(b=>b.classList.remove('on'));
   document.getElementById('pg-'+name).classList.add('active');
-  document.getElementById('nav-'+name)?.classList.add('on');
-  if(name==='report') renderReport();
-  if(name==='settings') loadSettingsProfile();
+  const navEl=document.getElementById('nav-'+name);
+  if(navEl)navEl.classList.add('on');
+  if(name==='report')renderReport();
+  if(name==='team')renderTeam();
+  if(name==='settings')loadSettingsProfile();
 }
 
 function loadSettingsProfile(){
-  if(!CP) return;
-  document.getElementById('profAv').textContent=(CP.full_name||CU.email)[0].toUpperCase();
-  document.getElementById('profName').textContent=CP.full_name||CU.email;
+  if(!CP)return;
+  const nm=CP.full_name||CU.email;
+  document.getElementById('profAv').textContent=nm[0].toUpperCase();
+  document.getElementById('profName').textContent=nm;
   document.getElementById('profEmail').textContent=CU.email;
-  document.getElementById('profRole').textContent=CP.role==='admin'?'👑 Admin':'🔧 ช่างเทคนิค';
+  document.getElementById('profRole').textContent=(CP.position||'ช่างเทคนิค')+(CP.role==='admin'?' · 👑 Admin':'');
 }
 
-// Settings functions
 function openEditProfile(){
   document.getElementById('ep-name').value=CP?.full_name||'';
   document.getElementById('ep-phone').value=CP?.phone||'';
-  document.getElementById('editProfileMo').classList.add('open');
+  const pos=CP?.position||'ช่างเทคนิค';
+  const sel=document.getElementById('ep-pos');
+  const opts=[...sel.options].map(o=>o.value);
+  if(opts.includes(pos))sel.value=pos;
+  else{sel.value='อื่นๆ';document.getElementById('ep-pos-custom').value=pos;}
+  document.getElementById('editProfMo').classList.add('open');
 }
-function closeEditProfile(){ document.getElementById('editProfileMo').classList.remove('open'); }
 
 async function saveProfile(){
   const name=document.getElementById('ep-name').value.trim();
+  const posVal=document.getElementById('ep-pos').value;
+  const posCustom=document.getElementById('ep-pos-custom').value.trim();
+  const pos=posVal==='อื่นๆ'&&posCustom?posCustom:posVal;
   const phone=document.getElementById('ep-phone').value.trim();
   if(!name){toast('กรุณากรอกชื่อ','err');return;}
-  const{error}=await sb.from('profiles').update({full_name:name,phone}).eq('id',CU.id);
+  const{error}=await sb.from('profiles').update({full_name:name,position:pos,phone}).eq('id',CU.id);
   if(error){toast('❌ '+error.message,'err');return;}
-  CP.full_name=name;CP.phone=phone;
-  closeEditProfile();
-  // Update UI
+  CP.full_name=name;CP.position=pos;CP.phone=phone;
+  document.getElementById('editProfMo').classList.remove('open');
   document.getElementById('av').textContent=name[0].toUpperCase();
   document.getElementById('uname').textContent=name;
+  document.getElementById('urole').textContent=pos;
   loadSettingsProfile();
   toast('✅ บันทึกโปรไฟล์สำเร็จ','ok');
 }
 
+function openSetRole(id,name,role,pos){
+  roleTargetId=id;
+  document.getElementById('setRoleInfo').innerHTML=`<b>${name}</b><br>ตำแหน่งปัจจุบัน: ${pos}`;
+  document.getElementById('sr-role').value=role;
+  document.getElementById('sr-pos').value=pos;
+  document.getElementById('setRoleMo').classList.add('open');
+}
+
+async function saveRole(){
+  if(!roleTargetId)return;
+  const role=document.getElementById('sr-role').value;
+  const pos=document.getElementById('sr-pos').value;
+  const{error}=await sb.from('profiles').update({role,position:pos}).eq('id',roleTargetId);
+  if(error){toast('❌ '+error.message,'err');return;}
+  document.getElementById('setRoleMo').classList.remove('open');
+  await loadTeam();
+  toast('✅ อัปเดตสิทธิ์สำเร็จ','ok');
+}
+
 async function changePassword(){
   const{error}=await sb.auth.resetPasswordForEmail(CU.email);
-  if(error) toast('❌ '+error.message,'err');
-  else toast('✅ ส่ง email รีเซ็ตรหัสผ่านแล้ว','ok');
+  if(error)toast('❌ '+error.message,'err');
+  else toast('✅ ส่ง Email รีเซ็ตรหัสผ่านแล้ว','ok');
 }
 
 function exportAllJobs(){
-  if(!jobs.length){toast('ไม่มีข้อมูลที่จะ Export','err');return;}
-  const headers=['เลขใบงาน','วันที่','บริษัท','ช่าง','เครื่อง','ยอดรวม','สถานะ'];
-  const rows=jobs.map(j=>[
-    j.job_no||'',
-    j.service_date||'',
-    j.company||'',
-    j.technician_name||'',
-    j.machine_name||'',
-    j.total||0,
-    j.status==='completed'?'เสร็จสิ้น':j.status==='approved'?'อนุมัติ':'ร่าง'
-  ]);
-  const csv=[headers,...rows].map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
-  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const myJobs=CP?.role==='admin'?jobs:jobs.filter(j=>j.technician_id===CU.id);
+  if(!myJobs.length){toast('ไม่มีข้อมูล','err');return;}
+  const h=['เลขใบงาน','วันที่','บริษัท','ช่าง','เครื่อง','ยอดรวม','สถานะ'];
+  const rows=myJobs.map(j=>[j.job_no||'',j.service_date||'',j.company||'',j.technician_name||'',j.machine_name||'',j.total||0,j.status==='completed'?'เสร็จสิ้น':j.status==='approved'?'อนุมัติ':'ร่าง']);
+  const csv=[h,...rows].map(r=>r.map(v=>`"${v}"`).join(',')).join('
+');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
   const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download=`KIMAC_Jobs_${new Date().toISOString().split('T')[0]}.csv`;
-  a.click();URL.revokeObjectURL(url);
-  toast('✅ Export สำเร็จ!','ok');
+  const a=document.createElement('a');a.href=url;a.download=`KIMAC_${new Date().toISOString().split('T')[0]}.csv`;a.click();
+  URL.revokeObjectURL(url);toast('✅ Export สำเร็จ','ok');
 }
 
-function clearLocalData(){
-  localStorage.clear();
-  toast('✅ ล้าง Cache แล้ว','ok');
-}
-
-// Job functions
-function newJob(){ localStorage.removeItem('kjid'); location.href='form.html'; }
-function editJob(id){ localStorage.setItem('kjid',id); location.href='form.html'; }
-function askDel(id,no){ delId=id; document.getElementById('delNo').textContent=no; document.getElementById('delMo').classList.add('open'); }
-function closeDel(){ delId=null; document.getElementById('delMo').classList.remove('open'); }
+function newJob(){localStorage.removeItem('kjid');location.href='form.html';}
+function editJob(id){localStorage.setItem('kjid',id);location.href='form.html';}
+function askDel(id,no){delId=id;document.getElementById('delNo').textContent=no;document.getElementById('delMo').classList.add('open');}
+function closeDel(){delId=null;document.getElementById('delMo').classList.remove('open');}
 async function doDel(){
   if(!delId)return;
   const btn=document.getElementById('mok');btn.textContent='กำลังลบ...';btn.disabled=true;
   await sb.from('service_parts').delete().eq('job_id',delId);
   await sb.from('service_jobs').delete().eq('id',delId);
-  closeDel();await load();
-  btn.textContent='ลบเลย';btn.disabled=false;
-  toast('ลบใบงานแล้ว','ok');
+  closeDel();await load();btn.textContent='ลบเลย';btn.disabled=false;
+  toast('ลบสำเร็จ','ok');
 }
-async function logout(){ await sb.auth.signOut(); location.href='login.html'; }
+async function logout(){await sb.auth.signOut();location.href='login.html';}
 init();
 </script>
 </body>
