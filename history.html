@@ -395,6 +395,15 @@ function toast(m,t){
   clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity='0',3000);
 }
 
+function showErr(msg){
+  document.getElementById('list').innerHTML=`
+    <div style="padding:20px;background:#fff0f0;border:2px solid #fecaca;border-radius:12px;margin:12px;font-family:'Sarabun',sans-serif">
+      <div style="font-size:16px;font-weight:700;color:#dc2626;margin-bottom:8px">⚠️ เกิดข้อผิดพลาด</div>
+      <div style="font-size:13px;color:#555;word-break:break-all">${msg}</div>
+      <button onclick="location.reload()" style="margin-top:12px;padding:10px 20px;background:#1a3a6e;color:#fff;border:none;border-radius:8px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;cursor:pointer">🔄 โหลดใหม่</button>
+    </div>`;
+}
+
 async function init(){
   // Load logo
   const ld=document.getElementById('LD');
@@ -404,9 +413,12 @@ async function init(){
     if(logoEl)logoEl.src=src;
   }
 
-  const{data:{session}}=await sb.auth.getSession();
-  if(!session){location.href='login.html';return;}
-  CU=session.user;
+  try{
+    const{data:{session},error:sErr}=await sb.auth.getSession();
+    if(sErr){showErr('Session error: '+sErr.message);return;}
+    if(!session){location.href='login.html';return;}
+    CU=session.user;
+  }catch(e){showErr('Auth error: '+e.message);return;}
   // Force fresh read — no cache
   let p=null;
   try{
@@ -437,8 +449,12 @@ async function init(){
     document.getElementById('uname').appendChild(roleTag);
   }
 
-  await load();
-  await loadTeam();
+  try{
+    await load();
+    await loadTeam();
+  }catch(e){
+    showErr('โหลดข้อมูลล้มเหลว: '+e.message);
+  }
 }
 
 async function load(){
@@ -470,10 +486,19 @@ async function load(){
 async function loadTeam(){
   try{
     const{data,error}=await sb.from('profiles').select('*').order('full_name');
-    if(error){console.error('loadTeam error:',error);return;}
+    if(error){
+      console.error('loadTeam error:',error);
+      const el=document.getElementById('teamList');
+      if(el) el.innerHTML=`<div style="padding:16px;background:#fff0f0;border-radius:10px;font-size:13px;color:#dc2626"><b>โหลดทีมงานไม่ได้:</b><br>${error.message}</div>`;
+      return;
+    }
     allProfiles=data||[];
-    renderTeam();
-  }catch(e){console.error('loadTeam catch:',e);}
+    if(document.getElementById('pg-team').classList.contains('active')) renderTeam();
+  }catch(e){
+    console.error('loadTeam catch:',e);
+    const el=document.getElementById('teamList');
+    if(el) el.innerHTML=`<div style="padding:16px;background:#fff0f0;border-radius:10px;font-size:13px;color:#dc2626"><b>ข้อผิดพลาด:</b><br>${e.message}</div>`;
+  }
 }
 
 function updateStats(){
@@ -534,7 +559,12 @@ function renderJobs(){
 
 function renderTeam(){
   const el=document.getElementById('teamList');
-  if(!allProfiles.length){el.innerHTML='<div class="empty"><div class="empty-ic">👥</div><b>ยังไม่มีสมาชิก</b></div>';return;}
+  if(!allProfiles.length){
+    // Try loading again
+    loadTeam();
+    el.innerHTML='<div class="ld"><div class="dots"><span></span><span></span><span></span></div><br>กำลังโหลดทีมงาน...</div>';
+    return;
+  }
   const isAdmin=CP?.role==='admin';
   el.innerHTML=allProfiles.map(p=>{
     const nm=p.full_name||p.id;
